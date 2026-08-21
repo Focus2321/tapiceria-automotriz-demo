@@ -28,7 +28,7 @@
   </div>
 
   <header class="site-header" id="inicio">
-    <a class="brand" href="#inicio" aria-label="Cuero Norte, volver al inicio">
+    <a class="brand" href="#inicio">
       <span class="brand-mark" aria-hidden="true">CN</span>
       <span class="brand-copy"><strong>Cuero Norte</strong><small>Tapicería automotriz</small></span>
     </a>
@@ -201,18 +201,19 @@
         </div>
       </div>
 
-      <form class="quote-form reveal" id="quote-form">
+      <noscript><p class="noscript-note">Esta demostración requiere JavaScript para proteger tus datos. El formulario permanece desactivado y no enviará información.</p></noscript>
+      <form class="quote-form reveal" id="quote-form" action="#cotizacion" method="get">
         <div class="field-row">
-          <label>Nombre<input type="text" name="name" autocomplete="name" required></label>
-          <label>Teléfono<input type="tel" name="phone" autocomplete="tel" required></label>
+          <label>Nombre<input type="text" name="name" autocomplete="name" required disabled></label>
+          <label>Teléfono<input type="tel" name="phone" autocomplete="tel" required disabled></label>
         </div>
         <div class="field-row three">
-          <label>Año<input type="text" name="year" inputmode="numeric" maxlength="4" placeholder="2018" required></label>
-          <label>Marca<input type="text" name="make" placeholder="Toyota" required></label>
-          <label>Modelo<input type="text" name="model" placeholder="Camry" required></label>
+          <label>Año<input type="text" name="year" inputmode="numeric" maxlength="4" placeholder="2018" required disabled></label>
+          <label>Marca<input type="text" name="make" placeholder="Toyota" required disabled></label>
+          <label>Modelo<input type="text" name="model" placeholder="Camry" required disabled></label>
         </div>
         <label>¿Qué necesita atención?
-          <select name="service" required>
+          <select name="service" required disabled>
             <option value="">Selecciona un servicio</option>
             <option>Asientos</option>
             <option>Cielo o techo interior</option>
@@ -222,13 +223,13 @@
             <option>Otro</option>
           </select>
         </label>
-        <label>Cuéntanos más<textarea name="message" rows="4" placeholder="Describe el desgaste, daño o acabado que buscas."></textarea></label>
+        <label>Cuéntanos más<textarea name="message" rows="4" placeholder="Describe el desgaste, daño o acabado que buscas." disabled></textarea></label>
         <label class="upload-field">
-          <input id="photos" type="file" name="photos" accept="image/*" multiple>
+          <input id="photos" type="file" name="photos" accept="image/*" multiple disabled>
           <span class="upload-icon" aria-hidden="true">+</span>
           <span><strong>Agregar fotografías</strong><small>JPG, PNG o WEBP · demostración local</small></span>
         </label>
-        <button class="button button-primary full" type="submit">Preparar solicitud</button>
+        <button class="button button-primary full" type="submit" disabled>Preparar solicitud</button>
         <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
     </section>

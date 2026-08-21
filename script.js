@@ -1,17 +1,57 @@
 const body = document.body;
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
+const menuText = menuButton?.querySelector('.sr-only');
+
+const closeMenu = () => {
+  body.classList.remove('nav-open');
+  menuButton?.setAttribute('aria-expanded', 'false');
+  if (menuText) menuText.textContent = 'Abrir menú';
+  if (nav && window.matchMedia('(max-width: 980px)').matches) {
+    nav.inert = true;
+    nav.setAttribute('aria-hidden', 'true');
+  }
+};
+
+const syncMenuState = () => {
+  if (!nav) return;
+  if (window.matchMedia('(max-width: 980px)').matches) {
+    if (!body.classList.contains('nav-open')) {
+      nav.inert = true;
+      nav.setAttribute('aria-hidden', 'true');
+    }
+  } else {
+    body.classList.remove('nav-open');
+    nav.inert = false;
+    nav.removeAttribute('aria-hidden');
+    menuButton?.setAttribute('aria-expanded', 'false');
+    if (menuText) menuText.textContent = 'Abrir menú';
+  }
+};
+
+syncMenuState();
+window.addEventListener('resize', syncMenuState);
 
 menuButton?.addEventListener('click', () => {
   const open = body.classList.toggle('nav-open');
   menuButton.setAttribute('aria-expanded', String(open));
+  nav.inert = !open;
+  if (open) nav.removeAttribute('aria-hidden');
+  else nav.setAttribute('aria-hidden', 'true');
+  if (menuText) menuText.textContent = open ? 'Cerrar menú' : 'Abrir menú';
 });
 
 nav?.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
-    body.classList.remove('nav-open');
-    menuButton?.setAttribute('aria-expanded', 'false');
+    closeMenu();
   });
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && body.classList.contains('nav-open')) {
+    closeMenu();
+    menuButton?.focus();
+  }
 });
 
 const comparison = document.querySelector('.comparison');
@@ -39,6 +79,9 @@ photos?.addEventListener('change', () => {
 
 const form = document.querySelector('#quote-form');
 const status = document.querySelector('#form-status');
+form?.querySelectorAll('input, select, textarea, button').forEach((control) => {
+  control.disabled = false;
+});
 form?.addEventListener('submit', (event) => {
   event.preventDefault();
   if (!form.checkValidity()) {
