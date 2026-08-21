@@ -20,7 +20,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; }
+body { margin: 0; overflow-x: hidden; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; }
 body.nav-open { overflow: hidden; }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
@@ -210,10 +210,30 @@ input:disabled, select:disabled, textarea:disabled, button:disabled { cursor: no
 .copyright { grid-column: 1 / -1; margin-top: 2.5rem !important; padding-top: 1.5rem; border-top: 1px solid var(--light-line); }
 
 .reveal { opacity: 1; transform: none; }
-.js .reveal { opacity: 0; transform: translateY(38px); transition: opacity .72s ease, transform .72s cubic-bezier(.22,1,.36,1); }
-.js .reveal.is-visible { opacity: 1; transform: none; }
-.js .services-figure.reveal, .js .materials-photo.reveal { clip-path: inset(0 0 14% 0); transition: opacity .85s ease, transform .85s cubic-bezier(.22,1,.36,1), clip-path 1s cubic-bezier(.22,1,.36,1); }
-.js .services-figure.reveal.is-visible, .js .materials-photo.reveal.is-visible { clip-path: inset(0); }
+.js .reveal { opacity: 0; transform: translateY(64px); transition: opacity .9s ease, transform .9s cubic-bezier(.16,1,.3,1), clip-path 1s cubic-bezier(.16,1,.3,1); }
+.js .intro-grid > .display.reveal,
+.js .services-head > .display.reveal,
+.js .process-head > .display.reveal,
+.js .faq .display.reveal { transform: translateX(-82px); }
+.js .intro-copy.reveal,
+.js .services-head > p.reveal,
+.js .process-head > p.reveal,
+.js .faq-grid > div:first-child > p.reveal { transform: translateX(72px); }
+.js .service-list li.reveal { transform: translateX(-58px); }
+.js .transformation-copy.reveal,
+.js .materials-card.reveal,
+.js .quote-intro.reveal { transform: translateX(-78px); }
+.js .comparison.reveal,
+.js .quote-form.reveal { transform: translateX(78px); clip-path: inset(0 18% 0 0); }
+.js .project-caption.reveal { transform: translateY(86px); }
+.js .project-number.reveal { transform: translateY(55px) scale(.86); }
+.js .process-steps li.reveal { transform: translateY(76px); }
+.js .accordion details:nth-child(2) { transition-delay: .08s; }
+.js .accordion details:nth-child(3) { transition-delay: .16s; }
+.js .accordion details:nth-child(4) { transition-delay: .24s; }
+.js .services-figure.reveal,
+.js .materials-photo.reveal { transform: translateX(78px) scale(.97); clip-path: inset(0 0 0 24%); }
+.js .reveal.is-visible { opacity: 1; transform: none !important; clip-path: inset(0) !important; }
 
 :focus-visible { outline: 2px solid var(--cognac); outline-offset: 4px; }
 
