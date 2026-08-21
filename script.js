@@ -62,11 +62,29 @@ range?.addEventListener('input', (event) => {
 
 const swatches = document.querySelectorAll('.swatch');
 const materialName = document.querySelector('.material-name');
+const materialPreview = document.querySelector('#material-preview');
 swatches.forEach((swatch) => {
-  swatch.addEventListener('click', () => {
-    swatches.forEach((item) => item.classList.remove('is-active'));
+  if (swatch.dataset.image) {
+    const preload = new Image();
+    preload.src = swatch.dataset.image;
+  }
+});
+swatches.forEach((swatch) => {
+  swatch.addEventListener('click', async () => {
+    swatches.forEach((item) => {
+      item.classList.remove('is-active');
+      item.setAttribute('aria-pressed', 'false');
+    });
     swatch.classList.add('is-active');
+    swatch.setAttribute('aria-pressed', 'true');
     if (materialName) materialName.textContent = swatch.dataset.material;
+    if (materialPreview && swatch.dataset.image) {
+      materialPreview.classList.add('is-changing');
+      materialPreview.src = swatch.dataset.image;
+      materialPreview.alt = swatch.dataset.alt || `Vista del material ${swatch.dataset.material}`;
+      try { await materialPreview.decode(); } catch (error) { /* Keep the selected image even if decode is unsupported. */ }
+      materialPreview.classList.remove('is-changing');
+    }
   });
 });
 

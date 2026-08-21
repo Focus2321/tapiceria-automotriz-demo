@@ -15,7 +15,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <title>Cuero Norte Tapicería | Concepto web</title>
 </head>
@@ -150,15 +150,15 @@
         <h2 id="materials-title">El tacto también<br>forma parte del diseño.</h2>
         <p>La selección correcta depende del uso diario, la exposición al calor, el estilo del vehículo y el mantenimiento esperado.</p>
         <div class="material-swatches" role="group" aria-label="Ejemplos de colores">
-          <button type="button" class="swatch is-active" style="--swatch:#a85f39" data-material="Cuero coñac" aria-label="Ver cuero coñac"></button>
-          <button type="button" class="swatch" style="--swatch:#1e1e1d" data-material="Negro carbón" aria-label="Ver negro carbón"></button>
-          <button type="button" class="swatch" style="--swatch:#d9c6a5" data-material="Crema cálida" aria-label="Ver crema cálida"></button>
-          <button type="button" class="swatch" style="--swatch:#747575" data-material="Gris acero" aria-label="Ver gris acero"></button>
+          <button type="button" class="swatch is-active" style="--swatch:#a85f39" data-material="Cuero coñac" data-image="assets/images/hero-artesano.webp" data-alt="Asiento automotriz en cuero coñac durante el trabajo de tapicería" aria-label="Ver cuero coñac" aria-pressed="true"></button>
+          <button type="button" class="swatch" style="--swatch:#1e1e1d" data-material="Negro carbón" data-image="assets/images/material-negro.webp" data-alt="Asiento automotriz en cuero negro carbón durante el trabajo de tapicería" aria-label="Ver negro carbón" aria-pressed="false"></button>
+          <button type="button" class="swatch" style="--swatch:#ecebe7" data-material="Marfil" data-image="assets/images/material-crema.webp" data-alt="Asiento automotriz en cuero marfil durante el trabajo de tapicería" aria-label="Ver cuero marfil" aria-pressed="false"></button>
+          <button type="button" class="swatch" style="--swatch:#747575" data-material="Gris acero" data-image="assets/images/material-gris.webp" data-alt="Asiento automotriz en cuero gris acero durante el trabajo de tapicería" aria-label="Ver gris acero" aria-pressed="false"></button>
         </div>
         <p class="material-name" aria-live="polite">Cuero coñac</p>
       </div>
       <div class="materials-photo reveal">
-        <img src="assets/images/hero-artesano.webp" alt="Detalle de costura artesanal en un asiento automotriz" width="1536" height="1024">
+        <img id="material-preview" src="assets/images/hero-artesano.webp" alt="Asiento automotriz en cuero coñac durante el trabajo de tapicería" width="1536" height="1024">
       </div>
     </section>
 
