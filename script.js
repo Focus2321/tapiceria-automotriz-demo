@@ -1,4 +1,5 @@
 const body = document.body;
+requestAnimationFrame(() => document.documentElement.classList.add('is-ready'));
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
 const menuText = menuButton?.querySelector('.sr-only');
@@ -129,6 +130,38 @@ if (reducedMotion || !('IntersectionObserver' in window)) {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -50px' });
   reveals.forEach((el) => observer.observe(el));
+}
+
+if (!reducedMotion) {
+  const heroImage = document.querySelector('.hero-image');
+  const project = document.querySelector('.project-feature');
+  let ticking = false;
+
+  const updateScrollMotion = () => {
+    const viewportHeight = window.innerHeight;
+    if (heroImage) {
+      const shift = Math.min(window.scrollY * 0.11, 105);
+      heroImage.style.setProperty('--hero-shift', `${shift}px`);
+    }
+    if (project) {
+      const rect = project.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
+      const shift = (progress - 0.5) * 72;
+      project.style.setProperty('--project-shift', `${shift}px`);
+    }
+    ticking = false;
+  };
+
+  const requestScrollMotion = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateScrollMotion);
+      ticking = true;
+    }
+  };
+
+  updateScrollMotion();
+  window.addEventListener('scroll', requestScrollMotion, { passive: true });
+  window.addEventListener('resize', requestScrollMotion);
 }
 
 document.querySelector('#year').textContent = new Date().getFullYear();
